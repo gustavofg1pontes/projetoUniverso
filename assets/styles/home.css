@@ -1,0 +1,30 @@
+body{
+    background-image: url('../img/fundo.jpg');
+    background-size: 100% 750%;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.info{
+    position: absolute;
+    width: 38vw;
+    height: 70vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    left: 3vw;
+    top: 18vh;
+    border-radius: 20px;
+}
+
+.registrar{
+    position: absolute;
+    width: 45vw;
+    height: 80vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    right: 3vw;
+    top: 18vh;
+    border-radius: 20px;
+}
+
+h2{
+    padding: 10px;
+}
