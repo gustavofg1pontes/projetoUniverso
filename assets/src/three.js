@@ -22,8 +22,7 @@ cena.add(sun)
 function addLight() {
     const light = new THREE.AmbientLight(0xffffff, 1)
     light.position.set(-5, -8, 10)
-    const lightHelper = new THREE.PointLightHelper(light)
-    cena.add(light, lightHelper)
+    cena.add(light)
 }
 addLight()
 
@@ -38,31 +37,55 @@ function addStar() {
 }
 Array(1000).fill().forEach(star => addStar())
 
+/* let oi
+function defineOrbit() {
+    oi = new OrbitControls(camera, renderer.domElement)
+} */
 
-const obj = new Object3D();
 function addOrbit(position = { x: 0, y: 0, z: 0 }, size, imgsrc) {
+    const obj = new Object3D();
     const geometry = new THREE.SphereGeometry(size)
     const texture = new THREE.TextureLoader().load(imgsrc)
-    const material = new THREE.MeshStandardMaterial({ map:  texture})
+    const material = new THREE.MeshStandardMaterial({ map: texture })
     const planet = new THREE.Mesh(geometry, material)
     planet.position.set(position.x, position.y, position.z)
 
     obj.add(planet)
-    return planet
+    return { planet, obj }
 }
 
-const mercury = addOrbit({ x: 200, y: 0, z: 0 }, 10, '../img/mercurytexture.jpg')
+const mercury = addOrbit({ x: 500, y: 0, z: 0 }, 10, '../img/mercurytexture.jpg')
+const venus = addOrbit({ x: 700, y: 0, z: 0 }, 10, '../img/mercurytexture.jpg')
+let astros = [sun, mercury, venus]
+let astroCamera = 0
 
 
-cena.add(obj)
+astros.forEach(astro => astro != sun ? cena.add(astro.obj) : console.log("praise the sun!"))
 
-const controls = new OrbitControls(camera, renderer.domElement)
+function moveCamera(passa) {
+    if (passa) { if (astroCamera < astros.length - 1) astroCamera++ }
+    else { if (astroCamera > 0) astroCamera-- }
+}
+document.querySelector(".next").addEventListener("click", () => {
+    moveCamera(true)
+})
+
+document.querySelector(".back").addEventListener("click", () => {
+    moveCamera(false)
+})
 function animate() {
     requestAnimationFrame(animate)
+    try {
+        if (camera.position.z < astros[astroCamera].planet.position.x + 50) camera.position.z += 5
+        else if(camera.position.z > astros[astroCamera].planet.position.x + 50) camera.position.z -= 5
+    } catch (err) {
+        if (camera.position.z > 200) camera.position.z -= 10
+    }
+
     sun.rotation.y += 0.001
-    obj.rotation.y += 0.009
-    mercury.rotation.y += 0.01
-    controls.update()
+    mercury.planet.rotation.y += 0.01
+    mercury.obj.rotation.y += 0.009
+
     renderer.render(cena, camera)
 }
 animate()

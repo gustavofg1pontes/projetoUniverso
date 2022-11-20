@@ -9,8 +9,12 @@
 
 <body>
     <%- include('./partials/header.ejs') %>
-    <canvas class="bg"></canvas>
-    <script type="importmap">
+        <div class="buttons">
+            <button class="next">Próximo</button>
+            <button class="back">Anterior</button>
+        </div>
+        <canvas class="bg"></canvas>
+        <script type="importmap">
         {
         "imports": {
          "three": "https://cdn.skypack.dev/three@0.139.2/build/three.module",
@@ -19,7 +23,7 @@
         }
        }
       </script>
-    <script type="module" src="./src/three.js"></script>
+        <script type="module" src="./src/three.js"></script>
 </body>
 
 </html>
