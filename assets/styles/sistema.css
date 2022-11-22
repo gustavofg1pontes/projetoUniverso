@@ -26,3 +26,14 @@ button:hover{
     margin-left: -7vw;
     top: 90vh;
 }
+.astro{
+    position: absolute;
+    width: 28vw;
+    height: 70vh;
+    z-index: 1999;
+    padding: 10px;
+    left: 20px;
+    top: 20vh;
+    border-radius: 10px;
+    border: 2px solid #fff;
+}
