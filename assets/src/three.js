@@ -14,12 +14,7 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 
 
 camera.position.set(0, 0, 200)
-const geometry = new THREE.SphereGeometry(100)
-const sunTexture = new THREE.TextureLoader().load('../img/suntexture.jpg')
-const material = new THREE.MeshStandardMaterial({ map: sunTexture })
-const sun = new THREE.Mesh(geometry, material)
 
-cena.add(sun)
 
 
 function addLight() {
@@ -40,31 +35,6 @@ function addStar() {
 }
 Array(2000).fill().forEach(star => addStar())
 
-const obj = new Object3D();
-function addOrbit(position = { x: 0, y: 0, z: 0 }, size, imgsrc) {
-    const geometry = new THREE.SphereGeometry(size)
-    const texture = new THREE.TextureLoader().load(imgsrc)
-    const material = new THREE.MeshStandardMaterial({ map: texture })
-    const planet = new THREE.Mesh(geometry, material)
-    planet.position.set(position.x, position.y, position.z)
-
-    obj.add(planet)
-    return planet
-}
-
-const mercury = addOrbit({ x: 500, y: 0, z: 0 }, 4, '../img/mercurytexture.jpg')
-const venus = addOrbit({ x: 700, y: 0, z: 0 }, 8, '../img/venustexture.jpg')
-const earth = addOrbit({ x: 900, y: 0, z: 0 }, 13, '../img/earthtexture.png')
-const mars = addOrbit({ x: 1100, y: 0, z: 0 }, 11, '../img/earthtexture.png')
-const jupiter = addOrbit({ x: 1400, y: 0, z: 0 }, 35, '../img/earthtexture.png')
-const saturn = addOrbit({ x: 1700, y: 0, z: 0 }, 28, '../img/earthtexture.png')
-const uranus = addOrbit({ x: 1900, y: 0, z: 0 }, 26, '../img/earthtexture.png')
-const neptune = addOrbit({ x: 2100, y: 0, z: 0 }, 26, '../img/earthtexture.png')
-const pluto = addOrbit({ x: 2300, y: 0, z: 0 }, 2, '../img/earthtexture.png')
-let astros = [sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto]
-let astroCamera = 0
-
-cena.add(obj)
 
 function moveCamera(passa) {
     if (passa) { if (astroCamera < astros.length - 1) astroCamera++ }
@@ -87,17 +57,73 @@ function text() {
     })
 }
 
+
+
+function addOrbit(position = { x: 0, y: 0, z: 0 }, size, imgsrc, ring = false) {
+    const obj = new Object3D();
+    const geometry = new THREE.SphereGeometry(size)
+    const texture = new THREE.TextureLoader().load(imgsrc)
+    const material = new THREE.MeshStandardMaterial({ map: texture })
+    const planet = new THREE.Mesh(geometry, material)
+    planet.position.set(position.x, position.y, position.z)
+
+    obj.add(planet)
+    const objPlanet = { planet, obj }
+    if (ring) rings(objPlanet, size + 10)
+    return objPlanet
+}
+function rings(planetobj, ringsize) {
+    const geometry = new THREE.TorusGeometry(ringsize, 2, 16, 100)
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff })
+    const ring = new THREE.Mesh(geometry, material)
+    ring.rotation.set(-150, 0, 0)
+
+    planetobj.planet.add(ring)
+}
+
+const sun = addOrbit({ x: 0, y: 0, z: 0 }, 100, '../img/suntexture.jpg')
+const mercury = addOrbit({ x: 500, y: 0, z: 0 }, 4, '../img/mercurytexture.jpg')
+const venus = addOrbit({ x: 700, y: 0, z: 0 }, 8, '../img/venustexture.jpg')
+const earth = addOrbit({ x: 900, y: 0, z: 0 }, 13, '../img/earthtexture.png')
+const mars = addOrbit({ x: 1100, y: 0, z: 0 }, 11, '../img/marstexture.jpg')
+const jupiter = addOrbit({ x: 1400, y: 0, z: 0 }, 35, '../img/jupitertexture.jpg')
+const saturn = addOrbit({ x: 1700, y: 0, z: 0 }, 28, '../img/saturntexture.jpg', true)
+const uranus = addOrbit({ x: 1900, y: 0, z: 0 }, 26, '../img/uranustexture.png')
+const neptune = addOrbit({ x: 2100, y: 0, z: 0 }, 26, '../img/neptunetexture.jpg')
+const pluto = addOrbit({ x: 2300, y: 0, z: 0 }, 2, '../img/plutotexture.jpg')
+let astros = [sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto]
+let astroCamera = 0
+
+
+
+astros.forEach(astro => cena.add(astro.obj))
+
 function animate() {
     requestAnimationFrame(animate)
-    if (camera.position.z < astros[astroCamera].position.x + 50) camera.position.z += 5
-    else if (camera.position.z > astros[astroCamera].position.x + 200) camera.position.z -= 5
+    if (camera.position.z < astros[astroCamera].planet.position.x + 50) camera.position.z += 5
+    else if (camera.position.z > astros[astroCamera].planet.position.x + 200) camera.position.z -= 5
     text()
-    sun.rotation.y += 0.001
-    console.log(astroCamera)
-    astros.forEach(astro => {
-        if (astro != sun) astro.rotation.y += 0.01
-    })
-    obj.rotation.y += velOrbit
+
+    sun.planet.rotation.y += 0.001
+    mercury.obj.rotation.y += 0.012
+    venus.obj.rotation.y += 0.0046
+    earth.obj.rotation.y += 0.008
+    mars.obj.rotation.y += 0.004
+    jupiter.obj.rotation.y += 0.0009
+    saturn.obj.rotation.y += 0.00045
+    uranus.obj.rotation.y += 0.0002
+    neptune.obj.rotation.y += 0.00008
+    pluto.obj.rotation.y += 0.00007
+
+    mercury.planet.rotation.y += 0.01
+    venus.planet.rotation.y += 0.01
+    earth.planet.rotation.y += 0.01
+    mars.planet.rotation.y += 0.01
+    jupiter.planet.rotation.y += 0.01
+    saturn.planet.rotation.y += 0.001
+    uranus.planet.rotation.y += 0.01
+    neptune.planet.rotation.y += 0.01
+    pluto.planet.rotation.y += 0.01
 
     renderer.render(cena, camera)
 }
