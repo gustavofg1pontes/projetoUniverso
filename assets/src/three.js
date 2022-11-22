@@ -4,12 +4,14 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 const cena = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / innerHeight, 0.1, 10000)
-let velOrbit = 0.003
+let velOrbit = 0.005
 
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector(".bg")
 })
 renderer.setSize(window.innerWidth, window.innerHeight)
+
+
 
 camera.position.set(0, 0, 200)
 const geometry = new THREE.SphereGeometry(100)
@@ -80,7 +82,7 @@ document.querySelector(".back").addEventListener("click", () => {
 function text() {
     const text = document.querySelectorAll(".astro")
     text.forEach(texto => {
-        if(text[astroCamera] == texto) texto.style.display = "block"
+        if (text[astroCamera] == texto) texto.style.display = "block"
         else texto.style.display = "none"
     })
 }
@@ -92,9 +94,9 @@ function animate() {
     text()
     sun.rotation.y += 0.001
     console.log(astroCamera)
-    mercury.rotation.y += 0.01
-    venus.rotation.y += 0.01
-    earth.rotation.y += 0.01
+    astros.forEach(astro => {
+        if (astro != sun) astro.rotation.y += 0.01
+    })
     obj.rotation.y += velOrbit
 
     renderer.render(cena, camera)
