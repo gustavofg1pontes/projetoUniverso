@@ -1,30 +1,68 @@
-body{
-    background-image: url('../img/fundo.jpg');
-    background-size: 100% 750%;
+body { 
+    background-color: rgba(0, 0, 0, 1);
     color: #fff;
     font-family: 'Poppins', sans-serif;
 }
+/* 
+:root {
+    --size-planet: 4vh;
+}
+
+.cursor {
+    position: absolute;
+    z-index: 999;
+}
+
+.circle {
+    width: var(--size-planet);
+    height: var(--size-planet);
+    border-radius: 100%;
+    background-color: cadetblue;
+}
+
+.ring {
+    width: calc(var(--size-planet) + 2vh);
+    height: calc(var(--size-planet) - 6vh);
+    border-radius: 100%;
+    border: 2px solid purple;
+    border-bottom: none;
+    position: absolute;
+    left: calc(var(--size-planet) - var(--size-planet)*1.25);
+    top: calc(var(--size-planet) - (var(--size-planet)/2));
+    transform: rotate(-10deg);
+} */
+
+
+.pag{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.motivacoes{
+    position: absolute;
+    top: 100vh;
+}
+.teste{
+    position: absolute;
+    top: 200vh;
+}
+.teste2{
+    position: absolute;
+    top: 300vh;
+}
 
 .info{
-    position: absolute;
-    width: 38vw;
-    height: 70vh;
-    background-color: rgba(0, 0, 0, 0.8);
-    left: 3vw;
-    top: 18vh;
-    border-radius: 20px;
+    opacity: 0;
+    transition: 1.5s;
 }
 
-.registrar{
-    position: absolute;
-    width: 45vw;
-    height: 80vh;
-    background-color: rgba(0, 0, 0, 0.8);
-    right: 3vw;
-    top: 18vh;
-    border-radius: 20px;
-}
-
-h2{
-    padding: 10px;
+@keyframes sobe {
+    to{
+        transform: translateY(0vh);
+    }
+    from{
+        transform: translateY(5vh);
+    }
 }
