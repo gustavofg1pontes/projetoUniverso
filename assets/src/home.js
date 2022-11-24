@@ -14,7 +14,7 @@ document.addEventListener('scroll', (e) => {
     let offSetY = document.body.getBoundingClientRect().top;
     for (let i = 0; i < infos.length; i++) {
         let info = infos[i]
-        if (-offSetY >= info.offsetTop - (window.innerHeight / 2)) {
+        if (-offSetY >= info.offsetTop - (window.innerHeight / 1.5)) {
             info.style.opacity = 1
             info.style.animation = 'sobe 1s'
         }

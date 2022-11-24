@@ -102,15 +102,15 @@ function animate() {
     text()
 
     sun.planet.rotation.y += 0.001
-    mercury.obj.rotation.y += 0.012
-    venus.obj.rotation.y += 0.0046
-    earth.obj.rotation.y += 0.008
-    mars.obj.rotation.y += 0.004
-    jupiter.obj.rotation.y += 0.0009
-    saturn.obj.rotation.y += 0.00045
-    uranus.obj.rotation.y += 0.0002
-    neptune.obj.rotation.y += 0.00008
-    pluto.obj.rotation.y += 0.00007
+    mercury.obj.rotation.y -= 0.012
+    venus.obj.rotation.y -= 0.009
+    earth.obj.rotation.y -= 0.008
+    mars.obj.rotation.y -= 0.004
+    jupiter.obj.rotation.y -= 0.0009
+    saturn.obj.rotation.y -= 0.00045
+    uranus.obj.rotation.y -= 0.0002
+    neptune.obj.rotation.y -= 0.00008
+    pluto.obj.rotation.y -= 0.00007
 
     mercury.planet.rotation.y += 0.01
     venus.planet.rotation.y += 0.01

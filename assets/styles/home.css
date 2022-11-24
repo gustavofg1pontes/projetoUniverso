@@ -1,8 +1,9 @@
-body { 
+body {
     background-color: rgba(0, 0, 0, 1);
     color: #fff;
     font-family: 'Poppins', sans-serif;
 }
+
 /* 
 :root {
     --size-planet: 4vh;
@@ -33,36 +34,94 @@ body {
 } */
 
 
-.pag{
+.pag {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.motivacoes{
+.principal {
     position: absolute;
-    top: 100vh;
+    left: 5vw;
+    top: 25vh;
+    font-size: 3em;
+    display: flex;
 }
-.teste{
-    position: absolute;
-    top: 200vh;
+.principal h1{
+    transition: 1s;
+    margin-top: 5vh;
 }
-.teste2{
-    position: absolute;
-    top: 300vh;
+.principal h1:hover{
+    transform: scale(1.1);
 }
 
-.info{
+
+.seta {
+    position: absolute;
+    left: 70vw;
+}
+.seta2{
+    position: absolute;
+    left: 70vw;
+    top: 20vh;
+}
+.seta3{
+    position: absolute;
+    left: 70vw;
+    top: 40vh;
+}
+
+.linha {
+    height: 10vh;
+    width: 2vw;
+    border: solid 2px #fff;
+    border-bottom: none;
+    animation: setas 1s infinite;
+}
+
+.ponta {
+    width: 5vh;
+    height: 5vh;
+    border: solid 2px #fff;
+    border-left: none;
+    border-top: none;
+    transform: rotate(45deg);
+    margin-top: -2vh;
+    margin-left: -0.2vw;
+}
+
+.info {
     opacity: 0;
     transition: 1.5s;
+    margin-top: 100vh;
+    margin-bottom: 100vh;
+}
+
+.footer{
+    width: 100%;
+    height: 20vh;
+    background-color: #fff;
 }
 
 @keyframes sobe {
-    to{
+    to {
         transform: translateY(0vh);
     }
-    from{
+
+    from {
         transform: translateY(5vh);
+    }
+}
+
+@keyframes setas {
+    0%{
+        height: 9vh;
+    }
+    50%{
+        height: 8.5vh;
+    }
+    100%{
+        height: 9vh;
     }
 }
