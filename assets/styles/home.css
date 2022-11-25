@@ -2,37 +2,8 @@ body {
     background-color: rgba(0, 0, 0, 1);
     color: #fff;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
-
-/* 
-:root {
-    --size-planet: 4vh;
-}
-
-.cursor {
-    position: absolute;
-    z-index: 999;
-}
-
-.circle {
-    width: var(--size-planet);
-    height: var(--size-planet);
-    border-radius: 100%;
-    background-color: cadetblue;
-}
-
-.ring {
-    width: calc(var(--size-planet) + 2vh);
-    height: calc(var(--size-planet) - 6vh);
-    border-radius: 100%;
-    border: 2px solid purple;
-    border-bottom: none;
-    position: absolute;
-    left: calc(var(--size-planet) - var(--size-planet)*1.25);
-    top: calc(var(--size-planet) - (var(--size-planet)/2));
-    transform: rotate(-10deg);
-} */
-
 
 .pag {
     display: flex;
@@ -60,16 +31,19 @@ body {
 .seta {
     position: absolute;
     left: 70vw;
+    animation: setas 1s infinite;
 }
 .seta2{
     position: absolute;
     left: 70vw;
     top: 20vh;
+    animation: setas 1s infinite;
 }
 .seta3{
     position: absolute;
     left: 70vw;
     top: 40vh;
+    animation: setas 1s infinite;
 }
 
 .linha {
@@ -77,7 +51,6 @@ body {
     width: 2vw;
     border: solid 2px #fff;
     border-bottom: none;
-    animation: setas 1s infinite;
 }
 
 .ponta {
@@ -94,14 +67,34 @@ body {
 .info {
     opacity: 0;
     transition: 1.5s;
-    margin-top: 100vh;
-    margin-bottom: 100vh;
+    margin-top: 70vh;
+    margin-bottom: 30vh;
 }
 
 .footer{
     width: 100%;
     height: 20vh;
     background-color: #fff;
+}
+
+.saturn{
+    position: absolute;
+    z-index: -1;
+    top: 100vh;
+    left: 150vw;
+}
+.image{
+    width: 100vw;
+    height: 70vh;
+}
+
+.retornar{
+    display: flex;
+    width: 100vw;
+    height: 15vh;
+    align-items: center;
+    justify-content: space-around;
+    transform: rotate(180deg);
 }
 
 @keyframes sobe {
@@ -116,12 +109,12 @@ body {
 
 @keyframes setas {
     0%{
-        height: 9vh;
+        transform: translateY(5%);
     }
     50%{
-        height: 8.5vh;
+        transform: translateY(0%);
     }
     100%{
-        height: 9vh;
+        transform: translateY(5%);
     }
 }

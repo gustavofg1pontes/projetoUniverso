@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import { Object3D } from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
+
 const cena = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / innerHeight, 0.1, 10000)
-let velOrbit = 0.005
 
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector(".bg")
