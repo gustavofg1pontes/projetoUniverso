@@ -81,21 +81,13 @@ body {
     position: absolute;
     z-index: -1;
     top: 100vh;
-    left: 150vw;
+    left: -150vw;
 }
 .image{
     width: 100vw;
     height: 70vh;
 }
 
-.retornar{
-    display: flex;
-    width: 100vw;
-    height: 15vh;
-    align-items: center;
-    justify-content: space-around;
-    transform: rotate(180deg);
-}
 
 @keyframes sobe {
     to {

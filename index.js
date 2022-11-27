@@ -12,5 +12,8 @@ app.get('/', (req, res) => {
 app.get('/SistemaSolar', (req, res) => {
     res.render('sistema');
 });
+app.get('/Formulas', (req, res) => {
+    res.render('formulas');
+});
 
 app.listen(3000, () => console.log("localhost:3000"))

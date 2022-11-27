@@ -49,8 +49,8 @@ document.querySelector(".back").addEventListener("click", () => {
 function text() {
     const text = document.querySelectorAll(".astro")
     text.forEach(texto => {
-        if (text[astroCamera] == texto) texto.style.display = "block"
-        else texto.style.display = "none"
+        if (text[astroCamera] == texto) texto.style.opacity = "1"
+        else texto.style.opacity = "0"
     })
 }
 
@@ -73,7 +73,7 @@ function rings(planetobj, ringsize) {
     const geometry = new THREE.TorusGeometry(ringsize, 2, 16, 100)
     const material = new THREE.MeshStandardMaterial({ color: 0xffffff })
     const ring = new THREE.Mesh(geometry, material)
-    ring.rotation.set(-150, 0, 0)
+    ring.rotation.set(-180, 0, 0)
 
     planetobj.planet.add(ring)
 }

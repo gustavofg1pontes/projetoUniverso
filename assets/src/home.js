@@ -14,14 +14,13 @@ document.addEventListener('scroll', (e) => {
         }
     }
 
-
-
+console.log(offSetY)
     var st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
-        if (saturnpos < -90) saturnpos++
+        if (offSetY <= -500 && saturnpos < -90) saturnpos++
         saturn.style.left = `${saturnpos}vw`
     } else {
-        if (saturnpos >= -150) saturnpos--
+        if (offSetY >= -950 && saturnpos >= -150) saturnpos--
         saturn.style.left = `${saturnpos}vw`
     }
     lastScrollTop = st <= 0 ? 0 : st;
