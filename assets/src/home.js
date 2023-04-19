@@ -1,27 +1,17 @@
-const saturn = document.querySelector(".saturn")
-let saturnpos = -150
-let infos = document.querySelectorAll('.info')
-var lastScrollTop = 0;
+let informacoes = document.querySelectorAll(".info");
 
+const options = {
+  threshold: 1,
+};
 
-document.addEventListener('scroll', (e) => {
-    let offSetY = document.body.getBoundingClientRect().top;
-    for (let i = 0; i < infos.length; i++) {
-        let info = infos[i]
-        if (-offSetY >= info.offsetTop - (window.innerHeight / 1.5)) {
-            info.style.opacity = 1
-            info.style.animation = 'sobe 1s'
-        }
-    }
+let iObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+    } else entry.target.style.opacity = 0;
+  });
+}, options);
 
-console.log(offSetY)
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-        if (offSetY <= -500 && saturnpos < -90) saturnpos++
-        saturn.style.left = `${saturnpos}vw`
-    } else {
-        if (offSetY >= -950 && saturnpos >= -150) saturnpos--
-        saturn.style.left = `${saturnpos}vw`
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
-})
+informacoes.forEach((e) => {
+  iObserver.observe(e);
+});
