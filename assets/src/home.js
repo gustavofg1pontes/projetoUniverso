@@ -15,3 +15,20 @@ let iObserver = new IntersectionObserver((entries) => {
 informacoes.forEach((e) => {
   iObserver.observe(e);
 });
+
+
+let planet = document.querySelector(".saturn");
+
+let pObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.marginLeft = "2vw";
+    } else{
+      entry.target.style.opacity = 0;
+      entry.target.style.marginLeft = "-20vw";
+    } 
+  });
+}, options);
+
+pObserver.observe(planet);
